@@ -43,5 +43,5 @@ def cli(
         cmd.append('&& dbt run-operation drop_branch_schemas')
 
     env_vars = dbt_env_vars(environment.palm.branch)
-    success, msg = environment.run_in_docker(" ".join(cmd), env_vars)
+    success, msg = environment.exec_in_docker(" ".join(cmd), env_vars)
     click.secho(msg, fg="green" if success else "red")

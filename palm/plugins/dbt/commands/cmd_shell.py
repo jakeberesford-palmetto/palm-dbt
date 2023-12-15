@@ -7,4 +7,4 @@ from palm.plugins.dbt.dbt_palm_utils import dbt_env_vars
 def cli(ctx):
     """Bash into your docker image to run arbitrary commands"""
     env_vars = dbt_env_vars(ctx.obj.palm.branch)
-    ctx.obj.run_in_docker('bash', env_vars)
+    ctx.obj.exec_in_docker('bash', env_vars)

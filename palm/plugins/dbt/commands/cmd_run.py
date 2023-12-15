@@ -75,7 +75,7 @@ def cli(
         vars=vars,
     )
 
-    success, msg = environment.run_in_docker(run_cmd, env_vars)
+    success, msg = environment.exec_in_docker(run_cmd, env_vars)
 
     if iterative:
         while not success:
@@ -91,12 +91,12 @@ def cli(
                 seed=False,
                 no_fail_fast=iterative,
             )
-            success, msg = environment.run_in_docker(stateful_run_cmd, env_vars)
+            success, msg = environment.exec_in_docker(stateful_run_cmd, env_vars)
 
     click.secho(msg, fg="green" if success else "red")
 
     if clean:
-        success, msg = environment.run_in_docker(
+        success, msg = environment.exec_in_docker(
             "dbt run-operation drop_branch_schemas", env_vars
         )
         click.secho(msg, fg="green" if success else "red")

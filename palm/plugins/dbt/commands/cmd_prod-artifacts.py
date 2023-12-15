@@ -21,7 +21,7 @@ def cli(environment):
     msg = "No-op command! Please override this command in your own project by running: 'palm override --name prod-artifacts'"
 
     env_vars = dbt_env_vars(environment.palm.branch)
-    # success, msg = environment.run_in_docker(cmd, env_vars)
+    # success, msg = environment.exec_in_docker(cmd, env_vars)
 
     click.secho(msg, fg="red")
     sys.exit(2)

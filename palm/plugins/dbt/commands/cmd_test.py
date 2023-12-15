@@ -56,11 +56,11 @@ def cli(
         exclude=exclude,
         defer=defer,
     )
-    success, msg = environment.run_in_docker(run_cmd, env_vars)
+    success, msg = environment.exec_in_docker(run_cmd, env_vars)
     click.secho(msg, fg="green" if success else "red")
 
     if clean:
-        success, msg = environment.run_in_docker(
+        success, msg = environment.exec_in_docker(
             "dbt run-operation drop_branch_schemas", env_vars
         )
         click.secho(msg, fg="green" if success else "red")
